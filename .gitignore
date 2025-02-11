@@ -1,6 +1,9 @@
 # Compiled class file
 *.class
 
+# Compile shell scripts
+*.sh
+
 # Log file
 *.log
 
