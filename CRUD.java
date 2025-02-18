@@ -192,6 +192,7 @@ public class CRUD extends Application{
                 if(nombre.getText().isBlank() || direccion.getText().isBlank() || telefonos.getItems().size() == 0)        
                     return;
                 PersonaDAO.registrarPersona(nombre.getText(), direccion.getText(), telefonos.getItems(), vehiculos.getItems()); 
+                dialog.close();
             }
         });
 
