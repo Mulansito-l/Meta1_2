@@ -31,15 +31,16 @@ public class PersonaDAO {
     }
 
     static void registrarPersona(String nombre, String direccion, List<String> telefonos, List<String> vehiculos){
-        String sql = String.format("INSERT INTO Personas VALUES('%d','%s','%s')",getNextID() + 1, nombre, direccion); 
+        int index = getNextID() + 1;
+        String sql = String.format("INSERT INTO Personas VALUES('%d','%s','%s')",index, nombre, direccion); 
         try{
             conexion.prepareStatement(sql).execute();
             for(String numero : telefonos){
-                sql = String.format("INSERT INTO Telefonos VALUES('%s',%d)",numero, getNextID() + 1);   
+                sql = String.format("INSERT INTO Telefonos VALUES('%s',%d)",numero, index);   
                 conexion.prepareStatement(sql).execute(); 
             }
             for (String vehiculo: vehiculos) {
-                sql = String.format("INSERT INTO Vehiculos VALUES(%d, '%s')",getNextID() + 1, vehiculo);   
+                sql = String.format("INSERT INTO Vehiculos VALUES(%d, '%s')",index, vehiculo);   
                 conexion.prepareStatement(sql).execute();
             }
         }catch(SQLException e){
@@ -120,7 +121,7 @@ public class PersonaDAO {
 
     static ResultSet obtenerTelefonosPersona(int ID){
         try {
-            return conexion.prepareStatement(String.format("SELECT * FROM Telefonos WHERE ID=%d", ID)).executeQuery();
+            return conexion.prepareStatement(String.format("SELECT * FROM Telefonos WHERE Persona=%d", ID)).executeQuery();
         } catch (Exception e) {
             System.out.println(e);
             return null;
@@ -129,7 +130,7 @@ public class PersonaDAO {
 
     static ResultSet obtenerVehiculosPersona(int ID){
         try {
-            return conexion.prepareStatement(String.format("SELECT * FROM Vehiculos WHERE ID=%d", ID)).executeQuery();
+            return conexion.prepareStatement(String.format("SELECT * FROM Vehiculos WHERE Persona=%d", ID)).executeQuery();
         } catch (Exception e) {
             System.out.println(e);
             return null;

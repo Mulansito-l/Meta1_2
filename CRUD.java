@@ -147,12 +147,10 @@ public class CRUD extends Application{
         });
 
         telefonos.setOnMouseClicked( e -> {
-        
             if(telefonos.getSelectionModel().getSelectedIndex() != -1)
                 telefonos.getItems().remove(telefonos.getSelectionModel().getSelectedIndex());
 
         });
-
         vehiculos.setOnMouseClicked( e -> {
             if(vehiculos.getSelectionModel().getSelectedIndex() != -1)
                 vehiculos.getItems().remove(vehiculos.getSelectionModel().getSelectedIndex());
@@ -271,8 +269,6 @@ public class CRUD extends Application{
             ListView<String> vehiculos = new ListView<String>();
             ComboBox<String> tipoVehiculos = new ComboBox<String>(FXCollections.observableArrayList("Auto","Camion","Maritimo","Motocicleta","Bicicleta"));
             Button agregarVehiculo = new Button("Agregar vehiculo");
-
-
             try{
                 if(result.next()){
                     nombre.setText(result.getString("Nombre"));
